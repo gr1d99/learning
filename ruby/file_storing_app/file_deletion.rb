@@ -13,15 +13,18 @@ class FileDeletion
   end
 
   def self.file_not_found(filename)
+    FileStorageHelpers.clear_screen
     puts "#{filename} does not exist, make sure you spell it correctly"
   end
 
   def self.target_file
+    FileStorageHelpers.clear_screen
     puts 'Enter the full name of the file in the store'
     gets.chomp
   end
 
   def self.success_message(filename)
+    FileStorageHelpers.clear_screen
     puts "#{filename} deleted successfully"
   end
 

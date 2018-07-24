@@ -7,6 +7,7 @@ require_relative './file_list'
 class FileStorageApp
   def start
     FileStorage.prepare_storage
+    FileStorageHelpers.clear_screen
     Choices.show_choices
     choice = Choices.fetch_selected_choice
     match_choice_to_action(choice)
@@ -16,7 +17,6 @@ class FileStorageApp
 
   def match_choice_to_action(choice)
     return Choices.invalid_choice unless Choices.choice_valid?(choice)
-
     case choice
     when '1'
       path = FileStorage.target_file_path
