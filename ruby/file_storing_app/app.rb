@@ -2,6 +2,7 @@ require_relative './constants'
 require_relative './choices'
 require_relative './file_storage'
 require_relative './file_deletion'
+require_relative './file_list'
 
 class FileStorageApp
   def start
@@ -22,6 +23,8 @@ class FileStorageApp
       FileStorage.handle_storage(path)
     when '2'
       FileDeletion.handle_deletion
+    when '3'
+      FileList.handle_listing
     else
       puts 'Oops!! try again'
     end

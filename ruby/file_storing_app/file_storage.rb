@@ -11,8 +11,8 @@ class FileStorage
   end
 
   def self.prepare_storage
-    exists = Dir.exist?("./#{STORAGE_DIRECTORY}")
-    Dir.mkdir(STORAGE_DIRECTORY.to_s) unless exists
+    exists = Dir.exist?("./#{STORAGE_DIRECTORY_NAME}")
+    Dir.mkdir(STORAGE_DIRECTORY_NAME.to_s) unless exists
   end
 
   def self.handle_storage(path)
