@@ -6,13 +6,14 @@ class FileStorage
   include FileStorageHelpers
 
   def self.target_file_path
+    FileStorageHelpers.clear_screen
     puts 'Enter full file path '
     gets.chomp
   end
 
   def self.prepare_storage
-    exists = Dir.exist?("./#{STORAGE_DIRECTORY}")
-    Dir.mkdir(STORAGE_DIRECTORY.to_s) unless exists
+    exists = Dir.exist?("./#{STORAGE_DIRECTORY_NAME}")
+    Dir.mkdir(STORAGE_DIRECTORY_NAME.to_s) unless exists
   end
 
   def self.handle_storage(path)
@@ -26,6 +27,7 @@ class FileStorage
       puts "#{filename} was not copied successfully, try again"
     end
 
+    FileStorageHelpers.clear_screen
     puts "#{filename} copied successfully"
   end
 
@@ -34,6 +36,7 @@ class FileStorage
   end
 
   def self.file_does_not_exist(path)
+    FileStorageHelpers.clear_screen
     puts "The path you specified(#{path}) is not valid, ensure you have the correct filename and path, you can alternatively copy full file path"
   end
 
