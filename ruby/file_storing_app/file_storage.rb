@@ -1,6 +1,10 @@
+require 'fileutils'
 require_relative './constants'
+require_relative './helpers'
 
-class Storage
+class FileStorage
+  include FileStorageHelpers
+
   def self.target_file_path
     puts 'Enter full file path '
     gets.chomp
@@ -14,11 +18,11 @@ class Storage
   def self.handle_storage(path)
     return file_does_not_exist(path) unless path_valid?(path)
     filename = file_basename(path)
-    copy_file(path, storage_path)
+    copy_file(path, FileStorageHelpers.storage_path)
 
     sleep 1
 
-    unless verify_file_in_store(filename)
+    unless FileStorageHelpers.verify_file_in_store(filename)
       puts "#{filename} was not copied successfully, try again"
     end
 
@@ -39,13 +43,5 @@ class Storage
 
   def self.file_basename(path)
     File.basename(path)
-  end
-
-  def self.verify_file_in_store(filename)
-    File.exist?("#{STORAGE_DIRECTORY}/#{filename}")
-  end
-
-  def self.storage_path
-    File.absolute_path(STORAGE_DIRECTORY.to_s)
   end
 end
